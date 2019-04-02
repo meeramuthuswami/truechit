@@ -1,2 +1,0 @@
-# truechit
-truechit codebase
