@@ -11,24 +11,26 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.truechit.spring.dao.UserDAO;
 import com.truechit.spring.model.User;
 
 @Repository
+@Transactional
 public class UserDAOImpl implements UserDAO {
 
    @Autowired
    private SessionFactory sessionFactory;
 
    @Override
-   public String save(User User) {
+   public Long save(User User) {
       sessionFactory.getCurrentSession().save(User);
       return User.getId();
    }
 
    @Override
-   public User get(String id) {
+   public User get(Long id) {
       return sessionFactory.getCurrentSession().get(User.class, id);
    }
 
@@ -44,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
    }
 
    @Override
-   public void update(String id, User user) {
+   public void update(Long id, User user) {
       Session session = sessionFactory.getCurrentSession();
       User user2 = session.byId(User.class).load(id);
       user2.setAge(user.getAge());
@@ -54,14 +56,14 @@ public class UserDAOImpl implements UserDAO {
    }
  
    @Override
-   public void delete(String id) {
+   public void delete(Long id) {
       Session session = sessionFactory.getCurrentSession();
       User User = session.byId(User.class).load(id);
       session.delete(User);
    }
 
 @Override
-public boolean addChitToUser(String userId, String chitId) {
+public boolean addChitToUser(Long userId, Long chitId) {
 	Session session = sessionFactory.getCurrentSession();
 	User user = session.byId(User.class).load(userId);
 	user.addChitList(chitId);
@@ -70,7 +72,10 @@ public boolean addChitToUser(String userId, String chitId) {
 }
 
 @Override
-public boolean submitBid(String chitId, double amount) {
+public boolean submitBid(Long userId, Long chitId, double amount) {
+	Session session = sessionFactory.getCurrentSession();
+	User user = session.byId(User.class).load(userId);
+	
 	// TODO Auto-generated method stub
 	return false;
 }

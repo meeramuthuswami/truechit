@@ -23,8 +23,7 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.truechit.spring.dao"),
-      @ComponentScan("com.truechit.spring.service") })
+@ComponentScans(value = { @ComponentScan("com.truechit.spring")})
 public class AppConfig {
 
    @Autowired

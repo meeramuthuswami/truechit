@@ -2,18 +2,19 @@ package com.truechit.spring.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity(name = "Chit")
 public class Chit {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String chitId;
+	private Long chitId;
 	private String chitName;
 	private int numberofUsers;
 	private int numberofPhases;
@@ -21,7 +22,8 @@ public class Chit {
 	private String chitType;
 	private double foremanFee;
 	private String maxBiddingCalculationRegex;
-	private List<String> users;
+	@ElementCollection
+	private List<User> users;
 	private String status;
 	private double chitAmount;
 
@@ -37,11 +39,11 @@ public class Chit {
 		return chitName;
 	}
 
-	public List<String> getUsers() {
+	public List<User> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<String> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
@@ -49,11 +51,11 @@ public class Chit {
 		this.chitName = chitName;
 	}
 
-	public String getChitId() {
+	public Long getChitId() {
 		return chitId;
 	}
 
-	public void setChitId(String chitId) {
+	public void setChitId(Long chitId) {
 		this.chitId = chitId;
 	}
 

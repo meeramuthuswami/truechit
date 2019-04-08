@@ -1,5 +1,6 @@
 package com.truechit.spring.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.truechit.spring.model.BidHistory;
@@ -7,14 +8,13 @@ import com.truechit.spring.model.Chit;
 
 public interface BidHistoryDAO {
 	
-    public double getWinningBid(String chitId, int cycle);
+    public BidHistory getWinningBid(Long chitId, int cycle);
     
-	public String save(BidHistory bid);
+	public String submitBid(BidHistory bid);
 	
-	public BidHistory get(String id);
+	public BidHistory get(Long id);
 
 	public List<BidHistory> list();
 	
-	public double getMaxBidAmount(String chitId, int cycle);
-
+	public double getMaxBidAmount(Long chitId, int cycle);
 }

@@ -22,12 +22,12 @@
 		<tr>
 			<td>NAME</td><td>Joining Date</td><td>Salary</td><td>SSN</td><td></td>
 		</tr>
-		<c:forEach items="${users}" var="employee">
+		<c:forEach items="${users}" var="users">
 			<tr>
 			<td>${user.name}</td>
 			<td>${user.joiningDate}</td>
 			<td>${user.salary}</td>
-			<td><a href="<c:url value='/delete-${user.id}-employee' />">delete</a></td>
+			<td><a href="<c:url value='/delete-${user.id}-user' />">delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.truechit.spring.dao.ChitDAO;
 import com.truechit.spring.model.Chit;
@@ -18,19 +19,20 @@ import com.truechit.spring.model.User;
 import com.truechit.spring.model.Chit;
 
 @Repository
+@Transactional
 public class ChitDAOImpl implements ChitDAO {
 
    @Autowired
    private SessionFactory sessionFactory;
 
    @Override
-   public String save(Chit chit) {
+   public Long save(Chit chit) {
       sessionFactory.getCurrentSession().save(chit);
       return chit.getChitId();
    }
 
    @Override
-   public Chit get(String id) {
+   public Chit get(Long id) {
       return sessionFactory.getCurrentSession().get(Chit.class, id);
    }
 
@@ -46,28 +48,31 @@ public class ChitDAOImpl implements ChitDAO {
    }
 
    @Override
-   public void update(String id, Chit Chit) {
+   public void update(Long id, Chit Chit) {
       Session session = sessionFactory.getCurrentSession();
-      Chit Chit2 = session.byId(Chit.class).load(id);
-      Chit2.setChitName(Chit.getChitName());
-      Chit2.setChitType(Chit.getChitType());
-      Chit2.setForemanFee(Chit.getForemanFee());
-      Chit2.setMaxBiddingCalculationRegex(Chit.getMaxBiddingCalculationRegex());
-      Chit2.setNumberofPhases(Chit.getNumberofPhases());
-      Chit2.setNumberofUsers(Chit.getNumberofUsers());
+      Chit chit2 = session.byId(Chit.class).load(id);
+      chit2.setChitName(Chit.getChitName());
+      chit2.setChitType(Chit.getChitType());
+      chit2.setForemanFee(Chit.getForemanFee());
+      chit2.setMaxBiddingCalculationRegex(Chit.getMaxBiddingCalculationRegex());
+      chit2.setNumberofPhases(Chit.getNumberofPhases());
+      chit2.setNumberofUsers(Chit.getNumberofUsers());
+      chit2.setUsers(Chit.getUsers());
+      
+      sessionFactory.getCurrentSession().save(chit2);
 
       session.flush();
    }
 
 	@Override
-	public void delete(String id) {
+	public void delete(Long id) {
 		Session session = sessionFactory.getCurrentSession();
 		Chit Chit = session.byId(Chit.class).load(id);
 		session.delete(Chit);
 	}
 
 	@Override
-	public double calculateAmountForMonth(String chitId, int cycle) {
+	public double calculateAmountForMonth(Long chitId, int cycle) {
 		//winningbid-(foremans fee)/number of members;
 		// TODO Auto-generated method stub
 		

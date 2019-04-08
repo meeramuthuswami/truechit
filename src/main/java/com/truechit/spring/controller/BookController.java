@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.truechit.spring.model.Book;
 import com.truechit.spring.service.BookService;
 
-@RestController
+//@RestController
 public class BookController {
 
    @Autowired

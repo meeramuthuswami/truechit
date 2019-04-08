@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity(name = "User")
+
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long id;
 	
 	private String name;
 	
@@ -21,25 +23,26 @@ public class User {
 	
 	private double salary;
 	
-	private List<String> chitList;
+	@Transient
+	private List<Long> chitList;
 	
-	public User(String id, String name, int age, double salary){
+	public User(Long id, String name, int age, double salary){
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
-		this.chitList = new ArrayList<String>();
+		this.chitList = new ArrayList<Long>();
 	}
 	
-	public List<String> getChitList() {
+	public List<Long> getChitList() {
 		return chitList;
 	}
 
-	public void setChitList(List<String> chitList) {
+	public void setChitList(List<Long> chitList) {
 		this.chitList = chitList;
 	}
 	
-	public void addChitList(String chitId) {
+	public void addChitList(Long chitId) {
 		this.chitList.add(chitId);
 	}
 	
@@ -47,11 +50,11 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

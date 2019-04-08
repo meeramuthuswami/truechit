@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.truechit.spring.dao.UserDAO;
 import com.truechit.spring.model.User;
 
+@Service
 @Transactional
 public class UserService {
 	
@@ -20,7 +21,7 @@ public class UserService {
 		return userDAO.list();
 	}
 	
-	public User findById(String id) {
+	public User findById(Long id) {
 		return userDAO.get(id);
 	}
 
@@ -28,15 +29,15 @@ public class UserService {
 		userDAO.save(user);
 	}
 
-	public void updateUser(String id, User user) {
+	public void updateUser(Long id, User user) {
 		userDAO.update(id, user);
 	}
 
-	public void deleteUserById(String id) {
+	public void deleteUserById(Long id) {
 		userDAO.delete(id);
 	}
 
-	public boolean isUserExist(String id) {
+	public boolean isUserExist(Long id) {
 		return userDAO.get(id) != null;
 	}
 

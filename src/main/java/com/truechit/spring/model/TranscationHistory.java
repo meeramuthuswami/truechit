@@ -1,5 +1,6 @@
 package com.truechit.spring.model;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -8,22 +9,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "Chit")
+@Entity(name = "TranscationHistory")
+
 public class TranscationHistory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String transactionId;
+	private Long transactionId;
 	private String chitId;
 	private int userId;
 	private double amountPaid;
 	private Date dateOfPayment;
 	private boolean isTransactionSuccess;
 	
-	public String getTransactionId() {
+	public Long getTransactionId() {
 		return transactionId;
 	}
-	public void setTransactionId(String transactionId) {
+	public void setTransactionId(Long transactionId) {
 		this.transactionId = transactionId;
 	}
 	public String getChitId() {

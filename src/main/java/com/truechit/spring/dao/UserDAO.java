@@ -6,17 +6,17 @@ import com.truechit.spring.model.User;
 
 public interface UserDAO {
 	
-	public String save(User user);
+	public Long save(User user);
 	
-	public User get(String id);
+	public User get(Long id);
 
 	public List<User> list();
 	
-    public void update(String id, User user);
+    public void update(Long id, User user);
     
-    public void delete(String id);
+    public void delete(Long id);
     
-    public boolean addChitToUser(String userId, String chitId);
-    
-    public boolean submitBid(String chitId, double amount);
+    public boolean addChitToUser(Long userId, Long chitId);
+
+	boolean submitBid(Long userId, Long chitId, double amount);
 }
